@@ -1,0 +1,35 @@
+version: "3.8"
+
+services:
+  mydb:
+    image: mysql:8
+    container_name: my_custom_mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: myrootpass
+      MYSQL_DATABASE: my_airflow_db
+      MYSQL_USER: myuser
+      MYSQL_PASSWORD: mypass
+    ports:
+      - "33060:3306"
+    volumes:
+      - mydb_data:/var/lib/mysql
+
+  scheduler_app:
+    build: ./airflow
+    image: apache/airflow:2.8.1
+    container_name: my_airflow_scheduler
+    depends_on:
+      - mydb
+    environment:
+      - AIRFLOW__CORE__EXECUTOR=LocalExecutor
+      - AIRFLOW__CORE__SQL_ALCHEMY_CONN=mysql+pymysql://myuser:mypass@mydb:3306/my_airflow_db
+      - AIRFLOW__CORE__LOAD_EXAMPLES=False
+    ports:
+      - "80800:8080"
+    volumes:
+      - ./airflow/dags:/opt/airflow/dags
+      - ./scripts:/opt/airflow/scripts
+
+
+volumes:
+  mydb_data:
