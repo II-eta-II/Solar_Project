@@ -15,8 +15,8 @@ x-airflow-common:
     PYTHONPATH: /opt/airflow
   volumes:
     - ./airflow/dags:/opt/airflow/dags
-    - ./airflow/logs:/opt/airflow/logs
-    - ./airflow/config:/opt/airflow/config
+    # - ./airflow/logs:/opt/airflow/logs
+    # - ./airflow/config:/opt/airflow/config
     - ./airflow/tasks:/opt/airflow/tasks
     - ./airflow/utils:/opt/airflow/utils
     - ./airflow/data:/opt/airflow/data
