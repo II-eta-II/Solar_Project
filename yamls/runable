@@ -1,0 +1,42 @@
+services:
+  postgres:
+    image: postgres:13
+    environment:
+      POSTGRES_USER: airflow
+      POSTGRES_PASSWORD: airflow
+      POSTGRES_DB: airflow
+    volumes:
+      - postgres-db-volume:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "airflow"]
+      interval: 10s
+      retries: 5
+      start_period: 5s
+    restart: always
+
+  airflow:
+    build: ./airflow
+    container_name: airflow
+    environment:
+      AIRFLOW__CORE__EXECUTOR: LocalExecutor
+      AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@postgres/airflow
+      AIRFLOW__CORE__LOAD_EXAMPLES: 'False'
+    ports:
+      - "8081:8080"
+    depends_on:
+      - postgres
+    command: >
+      bash -c "airflow db upgrade &&
+               airflow users create --username admin --password admin --firstname a --lastname b --role Admin --email admin@example.com &&
+               airflow webserver
+               "
+    volumes:
+      - ./airflow/dags:/opt/airflow/dags
+      - ./airflow/logs:/opt/airflow/logs
+      - ./airflow/config:/opt/airflow/config
+      - ./airflow/tasks:/opt/airflow/tasks
+      - ./airflow/utils:/opt/airflow/utils
+      - ./airflow/data:/opt/airflow/data
+
+volumes:
+  postgres-db-volume:
