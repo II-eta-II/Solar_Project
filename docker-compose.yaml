@@ -1,6 +1,8 @@
 x-airflow-common:
   &airflow-common
-  image: apache/airflow:2.9.0-python3.11
+  build:
+    context: .
+    dockerfile: Dockerfile
   environment:
     &airflow-common-env
     AIRFLOW__CORE__DEFAULT_TIMEZONE: Asia/Taipei
