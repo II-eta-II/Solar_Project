@@ -20,7 +20,7 @@ x-airflow-common:
     - ./airflow/tasks:/opt/airflow/tasks
     - ./airflow/utils:/opt/airflow/utils
     - ./airflow/data:/opt/airflow/data
-  user: "${AIRFLOW_UID:-50000}:0"
+  # user: "${AIRFLOW_UID:-50000}:0"
   depends_on:
     &airflow-common-depends-on
     - postgres
