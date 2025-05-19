@@ -15,12 +15,12 @@ x-airflow-common:
     PYTHONPATH: /opt/airflow
   volumes:
     - ./airflow/dags:/opt/airflow/dags
-    # - ./airflow/logs:/opt/airflow/logs
-    # - ./airflow/config:/opt/airflow/config
+    - ./airflow/logs:/opt/airflow/logs
+    - ./airflow/config:/opt/airflow/config
     - ./airflow/tasks:/opt/airflow/tasks
     - ./airflow/utils:/opt/airflow/utils
     - ./airflow/data:/opt/airflow/data
-  # user: "${AIRFLOW_UID:-50000}:0"
+  user: "${AIRFLOW_UID:-50000}:0"
   depends_on:
     &airflow-common-depends-on
     - postgres
@@ -29,7 +29,7 @@ services:
   airflow-webserver:
     <<: *airflow-common
     container_name: airflow_webserver
-    command: airflow webserver --host 0.0.0.0
+    command: /bin/sh -c "airflow db init && airflow webserver --host 0.0.0.0"
     ports:
       - "8081:8080"
     depends_on:
@@ -39,7 +39,7 @@ services:
   airflow-scheduler:
     <<: *airflow-common
     container_name: airflow_scheduler
-    command: scheduler
+    command: /bin/sh -c "airflow db init && airflow scheduler"
     depends_on:
       - postgres
 
