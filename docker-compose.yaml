@@ -27,7 +27,7 @@ services:
   airflow-webserver:
     <<: *airflow-common
     container_name: airflow_webserver
-    command: webserver
+    command: airflow webserver --host 0.0.0.0
     ports:
       - "8081:8080"
     depends_on:
