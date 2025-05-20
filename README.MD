@@ -19,3 +19,9 @@ docker run -it -d \
 git fetch origin
 git reset --hard origin/main
 curl localhost:8081
+
+gcloud compute scp docker-compose.yaml Tibame@airflow-server:/home/Tibame/ --zone "asia-east1-c" --project "solar-457715"
+gcloud compute scp docker-compose.yaml Dockerfile .env Tibame@airflow-server:/home/Tibame/ --zone "asia-east1-c" --project "solar-457715"
+gcloud compute scp --recurse ./airflow/tasks/a_hour.py Tibame@airflow-server:/home/Tibame/airflow/tasks --zone "asia-east1-c" --project "solar-457715"
+
+sudo chmod 777 /home/Tibame/airflow/tasks
