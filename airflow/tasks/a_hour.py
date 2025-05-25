@@ -20,6 +20,8 @@ def getOneHourData():
         while dtime < on_the_hour:
             time.sleep(2)
             record = crawler.getStationData(dtime, li)
+            dtime += timedelta(minutes=10)
+            
             if not record:
                 # print(f"{li} {dtime} get data Failed!!")
                 continue
@@ -29,7 +31,6 @@ def getOneHourData():
             record["li_type"] = li
             data.append(record)
             
-            dtime += timedelta(minutes=10)
         
         time_str = start_time.strftime("%Y-%m-%d_%H")
         file_path = Path("data", li, time_str + ".json")
