@@ -34,6 +34,16 @@ class AgrCwaCrawler():
         print(f"連線失敗！ ---{response.status_code}---")
         return False
 
+    def getPointList(self):
+        url = "https://agr.cwa.gov.tw/monitor/get_point_list"
+        point_data = {
+            "area": "",
+            "level": "",
+            "city": "",
+        }
+        response = self.session.post(url, data=point_data)
+        return response.json()
+
     def getStationData(self, obs_time: datetime, li_type: str):
         """
         method: post\n
@@ -58,15 +68,10 @@ class AgrCwaCrawler():
             "obs_time": obs_time,
             "li_type": li_type,
         }
-        # print(monitor_data)
-        # print(self.headers)
-        # print()
+
         response = self.session.post(url, data=monitor_data)
-        # print(f"連線代碼：{response.status_code}")
+
         if response.status_code != 200:
             return None
-        # return
-        # print("\n\ncheck point 1")
-        # print(response.text)
-        # print("\n\ncheck point 2")
+
         return response.json()

@@ -1,0 +1,83 @@
+6       key_ID  V2K620
+10      Cname   苗改生物防治研究中心
+41      Address 信義鄉新高口(臺18線約107.5k處路旁，對高岳營林區第31林班446號林地內)
+4       Altitude        1150
+9       Latitude        23.753836
+10      Longitude       120.294783
+0       StnEndTime
+3       City    雲林縣
+10      level   自動站_不含日射地溫
+1       Station_Status  1
+1       Temperature_Status      1
+1       Precip_Status   1
+1       Humidity_Status 1
+1       Wind_Status     1
+1       Sunshine_Status 0
+19      DTIME   2025-05-16 02:00:00
+6       ID      V2K620
+4       air_temp        24.8
+3       precp_ha        0.0
+3       rh      100
+10      wind_speed_mean -999.0(0級)
+4       solar_rad       0.00
+3       wind_dir_max    170
+19      MTIME   2025-05-16 02:00:00
+
+6       key_ID  V2K620
+10      Cname   苗改生物防治研究中心
+41      Address 信義鄉新高口(臺18線約107.5k處路旁，對高岳營林區第31林班446號林地內)
+4       Altitude        1150
+9       Latitude        23.753836
+10      Longitude       120.294783
+0       StnEndTime
+3       City    雲林縣
+10      level   自動站_不含日射地溫
+1       Station_Status  1
+1       Temperature_Status      1
+1       Precip_Status   1
+1       Humidity_Status 1
+1       Wind_Status     1
+1       Sunshine_Status 0
+6       ID      V2K620
+4       soil_temp       23.7
+4       soil_temp_0cm   24.4
+4       soil_temp_5cm   25.4
+4       soil_temp_10cm  25.9
+4       soil_temp_20cm  26.0
+4       soil_temp_50cm  26.3
+4       soil_temp_100cm 25.0
+
+6       ID      V2K620
+10      Cname   苗改生物防治研究中心
+9       Latitude        23.753836
+10      Longitude       120.294783
+3       rain10min       0.0
+4       rain1h  11.5
+4       rain3h  17.5
+4       rain6h  10.0
+4       rain12h 15.5
+4       rain1d  10.0
+4       rain_today      11.5
+4       rain_yesterday  10.0
+1       Station_Status  1
+1       Temperature_Status      1
+1       Precip_Status   1
+1       Humidity_Status 1
+1       Wind_Status     1
+1       Sunshine_Status 0
+
+6       key_ID  72D680
+10      Cname   水試所海水繁養殖中心
+4       level   新農業站
+4       H_VMC010        29.9
+4       H_VMC020        45.4
+4       H_VMC030        38.5
+4       H_VMC040        22.4
+4       H_VMC050        22.7
+4       H_VMC060        18.6
+4       H_VMC070        31.3
+4       H_VMC080        35.9
+4       H_VMC090        36.6
+4       H_VMC100        46.8
+4       H_VMC110        53.3
+4       H_VMC120        60.4

@@ -74,8 +74,8 @@ x-airflow-common:
     # If you want to use it, outcomment it and replace airflow.cfg with the name of your config file
     # AIRFLOW_CONFIG: '/opt/airflow/config/airflow.cfg'
     PYTHONPATH: /opt/airflow
-    # AIRFLOW_PROJ_DIR: "./airflow/"
-    # AIRFLOW_UID: 5000
+    # AIRFLOW_PROJ_DIR: ./airflow
+    # AIRFLOW_UID: 50000
     # AIRFLOW_GID: 990
     # AIRFLOW_USER: airflow
     # AIRFLOW_GROUP: docker
@@ -86,7 +86,7 @@ x-airflow-common:
     - ${AIRFLOW_PROJ_DIR:-.}/tasks:/opt/airflow/tasks
     - ${AIRFLOW_PROJ_DIR:-.}/data:/opt/airflow/data
     - ${AIRFLOW_PROJ_DIR:-.}/utils:/opt/airflow/utils
-  user: "${AIRFLOW_UID:-50000}:990"
+  user: "${AIRFLOW_UID:-50000}:0"
   depends_on:
     &airflow-common-depends-on
     postgres:
@@ -109,6 +109,8 @@ services:
     restart: always
 
   airflow-webserver:
+    environment:
+      <<: *airflow-common-env
     <<: *airflow-common
     command: webserver
     ports:
@@ -127,6 +129,8 @@ services:
 
   airflow-scheduler:
     <<: *airflow-common
+    environment:
+      <<: *airflow-common-env
     command: scheduler
     healthcheck:
       test: ["CMD", "curl", "--fail", "http://localhost:8974/health"]

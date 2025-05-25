@@ -27,11 +27,4 @@ default_args = {
 def task1():
     getOneHourData()
 
-# task1_obj = PythonOperator(
-#     task_id = "task1",
-#     python_callable=task1,
-#     dag=dag,
-# )
-
-# task1_obj
 task1()
