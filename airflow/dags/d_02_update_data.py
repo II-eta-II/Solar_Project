@@ -1,10 +1,6 @@
+from tasks.update_data import update_data
 from datetime import datetime, timedelta
-
-from airflow import DAG
 from airflow.decorators import dag, task
-from airflow.operators.python import PythonOperator
-from tasks.a_hour import getOneHourData
-
 
 default_args = {
     "owner": "admin",
@@ -17,14 +13,14 @@ default_args = {
 }
 
 @dag(
-    "d_01_hour",
+    "d_02_update_data",
     default_args=default_args,
-    description="get data every hour from agr_cwa",
-    schedule="30 * * * *",
-    start_date=datetime(2025, 5, 16),
+    description="parse data and upload to database",
+    schedule="45 * * * *",
+    start_date=datetime(2025, 6, 12),
     catchup=False,
 )
 def task1():
-    getOneHourData()
+    update_data()
 
 dag = task1()

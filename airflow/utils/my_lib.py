@@ -10,6 +10,7 @@ def saveJsonWithTimestamp(file_dir, file_name, data):
     pass
 
 def loadJson(file_path, mode="r"):
+    """讀取json檔案為dict"""
     with open(file_path, mode=mode, encoding="utf-8") as file:
         data = json.load(file)
     return data

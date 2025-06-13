@@ -23,7 +23,7 @@ def collect_max_len_values(dict_list)->dict:
 
 
 
-file_path = Path("data/soil_li/2025-05-16_02.json")
+file_path = Path("data/soil_li/2025-06-09_09.json")
 with open(file_path, "r", encoding="utf-8") as file:
     data = json.load(file)
 

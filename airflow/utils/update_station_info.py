@@ -1,12 +1,13 @@
 from utils.mysql_lib import update_with_filter, upsert_with_values, insert_with_values
-from utils.mysql_lib import station_table, MYSQL_CONN
+from utils.mysql_lib import stations_table, MYSQL_CONN
 from utils.my_lib import loadJson, saveJson
 from pathlib import Path
 import pandas as pd
 import numpy as np
 from shapely.geometry import Point
-from geoalchemy2.shape import from_shape
+# from geoalchemy2.shape import from_shape
 from utils.agr_cwa_crawler import AgrCwaCrawler
+
 def updateData():
     data = loadJson(Path("data/others/point_list.json"))
     data = data["station"]
@@ -18,7 +19,7 @@ def updateData():
     df["StnEndTime"] = df["StnEndTime"].replace("", None)
 
     data = df.to_dict(orient='records')
-    stmt = upsert_with_values(station_table, data)
+    stmt = upsert_with_values(stations_table, data)
     trans = MYSQL_CONN.begin()
     result = MYSQL_CONN.execute(stmt)
     trans.commit()
@@ -30,5 +31,5 @@ def getPointList():
 
 if __name__ == "__main__":
     pass
-    # getPointList()
-    updateData()
+    getPointList()
+    # updateData()
